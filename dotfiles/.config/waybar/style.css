@@ -1,26 +1,9 @@
 /* ======================== */
-/*  Rosé Pine Waybar Theme  */
+/*  Rosé greenlight Waybar Theme  */
 /* ======================== */
 
-/* Rosé Pine Palette */
-@define-color base      #191724;
-@define-color surface   #1f1d2e;
-@define-color overlay   #26233a;
-@define-color muted     #6e6a86;
-@define-color subtle    #908caa;
-@define-color text      #e0def4;
-@define-color love      #eb6f92;
-@define-color gold      #f6c177;
-@define-color rose      #ebbcba;
-@define-color pine      #31748f;
-@define-color foam      #9ccfd8;
-@define-color iris      #c4a7e7;
-@define-color highlightLow    #21202e;
-@define-color highlightMed    #403d52;
-@define-color highlightHigh   #524f67;
 
-
-
+@import "./color.css";
 
 
 * {
@@ -34,9 +17,8 @@
 
 
 window#waybar {
-    background: transparent;
-    color: @text;
-    border-bottom: 0px solid @highlightMed;
+    background: @transparent;
+    color: @foregrounddark;
 }
 
 
@@ -44,13 +26,13 @@ window#waybar {
 
 
 #clock {
-    color: @gold;
+    color: @orangelight;
     border-radius: 25 0 0 25;
 }
 
 #window {
     border-radius: 0 25 25 0;
-    color: @love;
+    color: @greenlight;
 }
 
 
@@ -59,18 +41,16 @@ window#waybar {
 
 #workspaces button {
     padding: 0 5px;
-    background: transparent;
-    color: @muted;
-    border-bottom: 2px solid transparent;
+    background: @transparent;
+    color: @graydark;
 }
 
 #workspaces button.active {
-    color: @text;
-    /*border-bottom: 3px solid @iris;*/
+    color: @reddark;
 }
 
 #workspaces button:hover {
-    color: @text;
+    color: @redlight;
 }
 
 #workspaces {
@@ -81,26 +61,64 @@ window#waybar {
 
 
 
-#network {
-/*    color: @pine; */
-    border-radius: 25 0 0 25;
+#network,
+#network.wifi,
+#network.ethernet,
+#network.disconnected,
+#network.wifi.wifi-weak,
+#network.wifi.wifi.fair,
+#network.wifi.wifi.good,
+#network.wifi.wifi.excellent {
+    color: @greenlight;
+    border-radius: 25px 0 0 25px;
 }
 
+/* Network states - only color changes */
+#network.wifi {
+    color: @bluelight;
+}
+
+#network.ethernet {
+    color: @aqualight;
+}
+
+#network.disconnected {
+    color: @redlight;
+}
+
+/* Signal strength variations - only color changes */
+#network.wifi.wifi-weak {
+    color: @orangelight;
+}
+
+#network.wifi.wifi-fair {
+    color: @yellowlight;
+}
+
+#network.wifi.wifi-good {
+    color: @greenlight;
+}
+
+#network.wifi.wifi-excellent {
+    color: @aqualight;
+}
+
+
 #tray {
-    color: @rose;
+    color: @redlight;
 }
 
 #pulseaudio {
-    color: @rose;
+    color: @redlight;
 }
 
-#pulseaudio.muted {
-    color: @muted;
+#pulseaudio.aqualight {
+    color: @aqualight;
 }
 
 #battery{
-    color: @iris;
-    border-radius: 0 25 25 0;
+    color: @purplelight;
+    border-radius: 0 25 25 0px;
     font-weight: normal;
 }
 
@@ -117,7 +135,7 @@ window#waybar {
 #pulseaudio.mute,
 #bluetooth,
 #battery{
-    background-color: @base;
+    background-color: @backgroundlight;
     padding: 0 20px;
     margin: 0 0px;
 }
@@ -140,9 +158,9 @@ window#waybar {
 /* ============== */
 
 tooltip {
-    background: @surface;
-    color: @text;
-    border: 2px solid @rose;
+    background: @backgroundlight;
+    color: @forgrounddark;
+    border: 2px solid @redlight;
     border-radius: 10px;
     padding: 6px;
     font-size: 12px;

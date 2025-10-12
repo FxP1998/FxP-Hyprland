@@ -122,9 +122,9 @@
     "network": {
         "interface": "wlo1",
         "format": "{icon}",
-        "format-wifi": "<span foreground ='#31748f'>{icon}</span>",
-        "format-ethernet": "<span foreground ='#9ccfd8'>{icon}</span>",
-        "format-disconnected": "<span foreground ='#eb6f92'>󰤭</span>",
+        "format-wifi": "{icon}",
+        "format-ethernet": "{icon}",
+        "format-disconnected": "󰤭",
 
         "format-icons": {
             "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
