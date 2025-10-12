@@ -1,21 +1,37 @@
 {
+    //BASE OF THE WAYBAR
     "layer": "top",
-    "position": "left", 
-    "width": 10,
-  
-    "margin-top": 10,
-    "margin-bottom": 10,
+    "position": "top", 
+    "height": 30, 
+    "spacing": 0, 
+    "margin-top": 3,
     "margin-left": 10,
-    "margin-right": 0,
+    "margin-right": 10,
 
 
 
 
 
     //MODULE POSITIONS
-    "modules-left": [ "clock", "group/misc" ],
-    "modules-center": [ "hyprland/workspaces" ],
-    "modules-right": [ "group/volume", "network", "battery" ],
+    "modules-left": [
+        "clock",
+        "custom/updates",
+        "custom/screen-recording",
+        "tray",
+        "hyprland/window"
+       
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    
+    "modules-right": [
+        "network",
+        "pulseaudio",
+        "bluetooth",
+        "battery"        
+    ],
 
 
 
@@ -23,7 +39,7 @@
 
     // MODULES ON LEFT
     "clock": {
-        "format": "{:%I\n%M\n%p}",
+        "format": " {:%I:%M %p}",
         "format-alt": "{:%A, %d %B %Y  %I:%M %p} 󰃰 ",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
@@ -127,63 +143,23 @@
         "on-click-right": "nm-connection-editor"
     },
 
-"pulseaudio/slider": {
-    "min": 0,
-    "max": 100,
-    "orientation": "vertical",
-    "width": 8,
-    "reverse": false,
-},
-
-"pulseaudio/slider": {
-    "min": 0,
-    "max": 100,
-    "orientation": "vertical",
-},
-
-"group/volume": {
-    "orientation": "vertical",
-    "drawer": {
-        "transition-duration": 500,
-        "transition-left-to-right": false
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "󰖁",
+        "format-icons": {
+            "headphone": ["", "", ""],
+            "speaker": ["", "", ""],
+            "default": ["", "", ""]
+        },
+        "scroll-step": 5,
+        "on-click": "swayosd-client --output-volume mute-toggle",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "swayosd-client --output-volume raise",
+        "on-scroll-down": "swayosd-client --output-volume lower",
+        "ignored-sinks": ["Easy Effects Sink"],
+        "tooltip-format": "  󰕾 {volume}% ",
+        "tooltip": true
     },
-    "modules": ["pulseaudio", "pulseaudio/slider"]
-},
-
-"pulseaudio": {
-    "format": "{icon}",
-    "format-muted": "󰖁",
-    "format-icons": {
-        "headphone": ["", "", ""],
-        "speaker": ["", "", ""],
-        "default": ["", "", ""]
-    },
-    "scroll-step": 5,
-    "on-click": "swayosd-client --output-volume mute-toggle", 
-    "on-click-right": "pavucontrol",
-    "on-scroll-up": "swayosd-client --output-volume raise",
-    "on-scroll-down": "swayosd-client --output-volume lower",
-    "ignored-sinks": ["Easy Effects Sink"],
-    "tooltip-format": " 󰕾 {volume}% ",
-    "tooltip": true
-},
-
-"group/misc": {
-    "orientation": "vertical",  // Fixed spelling
-    "drawer": {
-        "transition-duration": 500,
-        "transition-left-to-right": false
-    },
-    "modules": [
-        "custom/separator",
-        "bluetooth"
-    ]
-},
-
-"custom/separator": {
-    "format": "━━",
-    "tooltip": false
-},
 
     "bluetooth": {
         // Rose Pine color scheme - using Waybar's native format
