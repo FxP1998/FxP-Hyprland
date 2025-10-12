@@ -82,7 +82,7 @@ window#waybar {
 
 
 #network {
-    color: @pine;
+/*    color: @pine; */
     border-radius: 25 0 0 25;
 }
 
