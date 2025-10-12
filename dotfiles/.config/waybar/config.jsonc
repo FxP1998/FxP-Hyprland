@@ -69,7 +69,7 @@
         "exec": "~/.config/fxp-hyprland/scripts/custom/waybar/system-update/check-updates.sh",
         "return-type": "json",
         "interval": 3600,
-        "tooltip": true,
+        "tooltip": false,
         "on-click": "kitty -T 'System Update' sudo pacman -Syu"
     },
     
