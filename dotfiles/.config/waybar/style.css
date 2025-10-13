@@ -1,5 +1,9 @@
 @import "./color.css";
 
+/* ==========================================
+   BASE STYLING
+   ========================================== */
+
 * {
     border: none;
     font-family: "Hack", "MapleMonO NF", "0xProto Nerd Font", "Font Awesome", "Material Icons", sans-serif;
@@ -12,55 +16,36 @@ window#waybar {
     background: @bg;
     color: @fg;
     border: 2px solid @red;
+    min-width: 50px;
 }
 
-/* SLIDER STYLING */
-slider {
-    /* Slider track (background) */
-    min-width: 5px;
-    min-height: 20px;
-}
+/* ==========================================
+   MODULE ALIGNMENT & CONSISTENCY
+   ========================================== */
 
-#pulseaudio-slider slider {
-    /* The actual slider track */
-    min-width: 10px;
-    min-height: 10px;
-    border-radius: 25px;
-    background: @bg-alt;
-}
-
-#pulseaudio-slider trough {
-    /* The trough (background of the slider) */
-    min-width: 0px;
-    min-height: 100px;
-    border-radius: 25px;
-    background: linear-gradient(180deg, @bg 0%, @bg 100%);
-}
-
-#pulseaudio-slider highlight {
-    /* The filled portion of the slider */
-    min-width: 8px;
-    border-radius: 25px;
-    background: linear-gradient(180deg, @critical 30%, @bg-alt 100%);
-}
-
-
-
-
-
-
-
-/* Individual module padding for better spacing */
-#pulseaudio,
-#battery,
-#bluetooth,
-#network {
+#clock, #custom-updates, #custom-screen-recording, #tray,
+#pulseaudio, #battery, #network, #bluetooth {
     font-size: 15px;
     font-weight: 500;
-    padding: 0px 0px 15px 0px;
+    min-width: 40px;
+    padding: 8px 0px;
 }
 
-/* Workspaces styling for vertical layout */
+/* ==========================================
+   CLOCK STYLING
+   ========================================== */
+
+#clock {
+    font-size: x-large;
+    font-weight: bold;
+    min-width: 10px;
+    padding: 20px 0px 0px 0px;
+}
+
+/* ==========================================
+   WORKSPACES STYLING
+   ========================================== */
+
 #workspaces {
     min-width: 8px;
     margin: 20px;
@@ -95,38 +80,155 @@ slider {
     min-height: 30px;
 }
 
-#clock {
-    font-size: x-large;
-    font-weight: bold;
-    min-width: 10px;
-    padding: 20px 0px 0px 0px;
+/* ==========================================
+   VOLUME SLIDER STYLING
+   ========================================== */
+
+slider {
+    min-width: 5px;
+    min-height: 20px;
 }
 
+#pulseaudio-slider slider {
+    min-width: 10px;
+    min-height: 10px;
+    border-radius: 25px;
+    background: @bg-alt;
+}
+
+#pulseaudio-slider trough {
+    min-width: 0px;
+    min-height: 100px;
+    border-radius: 25px;
+    background: linear-gradient(180deg, @bg 0%, @bg 100%);
+}
+
+#pulseaudio-slider highlight {
+    min-width: 8px;
+    border-radius: 25px;
+    background: linear-gradient(180deg, @critical 30%, @bg-alt 100%);
+}
+
+/* ==========================================
+   VOLUME MODULE STYLING
+   ========================================== */
+
+#pulseaudio {
+    color: @blue;
+}
+
+#pulseaudio.muted {
+    color: @red;
+}
+
+/* ==========================================
+   BATTERY MODULE STYLING
+   ========================================== */
+
 #battery {
-  padding: 0px 0px 20px 0px;
-  transition: color 0.3s ease-in-out;
+    padding: 8px 0px 12px 0px;
+    transition: color 0.3s ease-in-out;
+    color: @green;
 }
 
 #battery.critical {
-  color: #BF616A; 
+    color: @critical;
 }
 
 #battery.warning {
-  color: #EBCB8B; 
+    color: @warning;
 }
 
 #battery.good {
-  color: #A3BE8C; 
+    color: @green;
 }
 
 #battery.full {
-  color: #88C0D0;
+    color: @blue;
 }
 
 #battery.charging {
-  color: #A3BE8C; 
+    color: @aqua;
 }
 
+/* ==========================================
+   NETWORK MODULE STYLING
+   ========================================== */
+
+#network {
+    color: @aqua;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+#network.ethernet {
+    color: @blue;
+}
+
+#network.wifi {
+    color: @green;
+}
+
+/* ==========================================
+   BLUETOOTH MODULE STYLING
+   ========================================== */
+
+#bluetooth {
+    color: @purple;
+}
+
+#bluetooth.connected {
+    color: @blue;
+}
+
+#bluetooth.on {
+    color: @yellow;
+}
+
+#bluetooth.off {
+    color: @red;
+}
+
+/* ==========================================
+   SEPARATOR STYLING
+   ========================================== */
+
 #custom-separator {
-  padding: 5px 0px 5px 0px;
+    padding: 5px 0px 5px 0px;
+    color: @gray;
+}
+
+/* ==========================================
+   TRAY STYLING
+   ========================================== */
+
+#tray {
+    color: @fg-alt;
+}
+
+/* ==========================================
+   UPDATES MODULE STYLING
+   ========================================== */
+
+#custom-updates {
+    color: @yellow;
+}
+
+/* ==========================================
+   SCREEN RECORDING MODULE STYLING
+   ========================================== */
+
+#custom-screen-recording {
+    color: @red;
+}
+
+/* ==========================================
+   GROUP CONTAINER STYLING
+   ========================================== */
+
+#group-volume, #group-misc {
+    min-width: 40px;
+    padding: 5px 0px;
 }

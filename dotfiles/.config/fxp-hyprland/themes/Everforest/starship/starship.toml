@@ -23,16 +23,17 @@ $time\n  \
 [󱞪](fg:iris) \
 """
 
-palette = "rose-pine"
+palette = "everforest"
 
-[palettes.rose-pine]
-overlay = '#26233a'
-love = '#eb6f92'
-gold = '#f6c177'
-rose = '#ebbcba'
-pine = '#31748f'
-foam = '#9ccfd8'
-iris = '#c4a7e7'
+[palettes.everforest]
+overlay = '#343f44'
+love = '#E67E80'
+gold = '#DBBC7F'
+rose = '#D699B6'
+pine = '#7FBBB3'
+foam = '#83C092'
+iris = '#A7C080'
+
 
 [directory]
 format = "[](fg:overlay)[ $path ]($style)[](fg:overlay) "
@@ -83,8 +84,6 @@ format = "[](fg:overlay)[ 󰧱 $user ]($style)[](fg:overlay) "
 show_always = true
 style_root = "bg:overlay fg:iris"
 style_user = "bg:overlay fg:iris"
-
-# Languages
 
 [c]
 style = "bg:overlay fg:pine"

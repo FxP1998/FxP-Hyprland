@@ -1,0 +1,19 @@
+/* MINIMAL COLOR VARIABLES */
+@define-color bg #2D353B;
+@define-color bg-alt #232A2E;
+@define-color fg #D3C6AA;
+@define-color fg-alt #A7C080;
+
+/* ACCENT COLORS */
+@define-color red #E67E80;
+@define-color blue #7FBBB3;
+@define-color green #A7C080;
+@define-color yellow #DBBC7F;
+@define-color orange #E69875;
+@define-color purple #D699B6;
+@define-color aqua #83C092;
+@define-color gray #859289;
+
+/* STATUS */
+@define-color warning #DBBC7F;
+@define-color critical #E67E80;
