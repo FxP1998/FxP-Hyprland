@@ -2,16 +2,16 @@
 
 * {
     border: none;
-    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Material Icons", sans-serif;
+    font-family: "Hack", "MapleMonO NF", "0xProto Nerd Font", "Font Awesome", "Material Icons", sans-serif;
     min-width: 5px;
     padding: 0px;
     margin: 0;
-    border-radius: 0px;
 }
 
 window#waybar {
-    background: @background;
-    color: @foregrounddark;
+    background: @bg;
+    color: @fg;
+    border: 2px solid @red;
 }
 
 /* SLIDER STYLING */
@@ -23,10 +23,10 @@ slider {
 
 #pulseaudio-slider slider {
     /* The actual slider track */
-    min-width: 0px;
-    min-height: 0px;
+    min-width: 10px;
+    min-height: 10px;
     border-radius: 25px;
-    background: @background;
+    background: @bg-alt;
 }
 
 #pulseaudio-slider trough {
@@ -34,14 +34,14 @@ slider {
     min-width: 0px;
     min-height: 100px;
     border-radius: 25px;
-    background: @backgrounddark;
+    background: linear-gradient(180deg, @bg 0%, @bg 100%);
 }
 
 #pulseaudio-slider highlight {
     /* The filled portion of the slider */
     min-width: 8px;
     border-radius: 25px;
-    background: @bluelight; /* Or any color you prefer */
+    background: linear-gradient(180deg, @critical 30%, @bg-alt 100%);
 }
 
 
@@ -56,6 +56,7 @@ slider {
 #bluetooth,
 #network {
     font-size: 15px;
+    font-weight: 500;
     padding: 0px 0px 15px 0px;
 }
 
@@ -69,7 +70,7 @@ slider {
 
 #workspaces button {
     color: transparent;
-    background: linear-gradient(180deg, @aqualight 0%, @reddark 100%);
+    background: linear-gradient(180deg, @gray 0%, @bg 100%);
     transition: all 0.3s ease-in-out;
     min-width: 0px;
     min-height: 0px;
@@ -79,22 +80,23 @@ slider {
 
 #workspaces button.active {
     color: transparent;
-    background: linear-gradient(180deg, @bluedark 0%, @yellowlight 100%);
+    background: linear-gradient(180deg, @red 20%, @purple 80%);
     transition: all 0.3s ease-in-out;
     font-size: 13px;
-    min-height: 50px;
+    min-height: 75px;
     border-radius: 25px;
 }
 
-#workspaces button.hover {
+#workspaces button:hover {
     color: transparent;
-    background: linear-gradient(180deg, @yellowlight 0%, @bluedark 100%);
+    background: linear-gradient(180deg, @orange 50%, @green 50%);
     transition: all 0.3s ease-in-out;
     border-radius: 20px;
-    background-size: 400% 400%;
+    min-height: 30px;
 }
 
 #clock {
+    font-size: x-large;
     font-weight: bold;
     min-width: 10px;
     padding: 20px 0px 0px 0px;
@@ -106,21 +108,25 @@ slider {
 }
 
 #battery.critical {
-  color: #BF616A; /* Red for critical */
+  color: #BF616A; 
 }
 
 #battery.warning {
-  color: #EBCB8B; /* Yellow for warning */
+  color: #EBCB8B; 
 }
 
 #battery.good {
-  color: #A3BE8C; /* Green for good */
+  color: #A3BE8C; 
 }
 
 #battery.full {
-  color: #88C0D0; /* Blue for full */
+  color: #88C0D0;
 }
 
 #battery.charging {
-  color: #A3BE8C; /* Green when charging */
+  color: #A3BE8C; 
+}
+
+#custom-separator {
+  padding: 5px 0px 5px 0px;
 }

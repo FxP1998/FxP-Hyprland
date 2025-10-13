@@ -191,7 +191,9 @@
         "format-icons": ["", "", "", "", ""],
         "states": {
             "critical": 15,
-            "warning": 90
+            "warning": 30,
+            "good": 50,
+            "full": 95
         },
         "colors": {
             "good": "#A3BE8C",

@@ -13,9 +13,9 @@
 
 
     //MODULE POSITIONS
-    "modules-left": [ "clock", "group/misc" ],
+    "modules-left": [ "clock", "custome/update", "custom/screen-recording", "tray", "group/misc" ],
     "modules-center": [ "hyprland/workspaces" ],
-    "modules-right": [ "group/volume", "network", "battery" ],
+    "modules-right": [ "custom/separator", "group/volume", "network", "battery" ],
 
 
 
@@ -24,10 +24,9 @@
     // MODULES ON LEFT
     "clock": {
         "format": "{:%I\n%M\n%p}",
-        "format-alt": "{:%A, %d %B %Y  %I:%M %p} 󰃰 ",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
-            "mode"          : "year",
+            "mode"          : "month",
             "mode-mon-col"  : 3,
             "weeks-pos"     : "left",
             "on-scroll"     : 1,
@@ -176,12 +175,13 @@
     },
     "modules": [
         "custom/separator",
+        "custom/separator",
         "bluetooth"
     ]
 },
 
 "custom/separator": {
-    "format": "━━",
+    "format": "━━━",
     "tooltip": false
 },
 
@@ -208,8 +208,10 @@
 
 "battery": {
     "format": "{icon}",
-    "format-charging": " \n{capacity}%",
     "format-full": "󱈏",
+    "format-charging": " \n{capacity}%",
+    "format-charging-full": "󱈏/n{capacity}",
+    "format-discharging": "{icon}",
     "format-icons": ["", "", "", "", ""],
     "states": {
         "critical": 15,
@@ -217,8 +219,7 @@
         "good": 50,
         "full": 95
     },
-    "tooltip-format": "Battery: {capacity}% ({time})",
-    "interval": 5
+    "tooltip-format": "   {capacity}% "
 }
 }
 
