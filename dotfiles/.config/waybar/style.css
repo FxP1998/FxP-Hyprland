@@ -12,8 +12,6 @@
 window#waybar {
     background: @background;
     color: @foregrounddark;
-    /* Set the overall bar width */
-    min-width: 45px;
 }
 
 /* SLIDER STYLING */
@@ -50,34 +48,79 @@ slider {
 
 
 
-/* GENERAL BAR WIDTH ADJUSTMENTS */
-#waybar {
-    min-width: 45px;
-}
+
 
 /* Individual module padding for better spacing */
 #pulseaudio,
 #battery,
 #bluetooth,
 #network {
-    min-width: 30px;
-    padding: 2px 0px;
+    font-size: 15px;
+    padding: 0px 0px 15px 0px;
 }
 
 /* Workspaces styling for vertical layout */
 #workspaces {
-    min-width: 30px;
-    padding: 5px 0px;
+    min-width: 8px;
+    margin: 20px;
+    transition: all 0.3s ease-in-out;
+    padding: 0px;
 }
 
 #workspaces button {
-    min-width: 25px;
-    min-height: 25px;
-    margin: 2px 0px;
+    color: transparent;
+    background: linear-gradient(180deg, @aqualight 0%, @reddark 100%);
+    transition: all 0.3s ease-in-out;
+    min-width: 0px;
+    min-height: 0px;
+    margin: 5px 0px;
+    border-radius: 5px;
 }
 
+#workspaces button.active {
+    color: transparent;
+    background: linear-gradient(180deg, @bluedark 0%, @yellowlight 100%);
+    transition: all 0.3s ease-in-out;
+    font-size: 13px;
+    min-height: 50px;
+    border-radius: 25px;
+}
+
+#workspaces button.hover {
+    color: transparent;
+    background: linear-gradient(180deg, @yellowlight 0%, @bluedark 100%);
+    transition: all 0.3s ease-in-out;
+    border-radius: 20px;
+    background-size: 400% 400%;
+}
 
 #clock {
     font-weight: bold;
     min-width: 10px;
+    padding: 20px 0px 0px 0px;
+}
+
+#battery {
+  padding: 0px 0px 20px 0px;
+  transition: color 0.3s ease-in-out;
+}
+
+#battery.critical {
+  color: #BF616A; /* Red for critical */
+}
+
+#battery.warning {
+  color: #EBCB8B; /* Yellow for warning */
+}
+
+#battery.good {
+  color: #A3BE8C; /* Green for good */
+}
+
+#battery.full {
+  color: #88C0D0; /* Blue for full */
+}
+
+#battery.charging {
+  color: #A3BE8C; /* Green when charging */
 }

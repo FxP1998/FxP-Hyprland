@@ -1,12 +1,12 @@
 {
     "layer": "top",
-    "position": "left", 
-    "width": 10,
+    "position": "right", 
+    "width": 50,
   
-    "margin-top": 10,
-    "margin-bottom": 10,
-    "margin-left": 10,
-    "margin-right": 0,
+    "margin-top": 5,
+    "margin-bottom": 5,
+    "margin-left": 0,
+    "margin-right": 5,
 
 
 
@@ -87,13 +87,13 @@
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "1": "  ",
-            "2": "  ",
-            "3": "  ",
-            "4": "  ",
-            "5": "  ",
-            "active": " 󰪥 ",
-            "default": "  "
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "active": "",
+            "default": ""
         },
         "persistent-workspaces": {
                 "*": 5, // 5 workspaces by default on every monitor
@@ -206,23 +206,19 @@
         "interval": 5
     },
 
-    "battery": {
-        "format": "{icon}",
-        "format-full": "",
-        "format-charging": " {capacity}",
-        "format-charging-full": "  {capacity}",
-        "format-discharging": "{icon} ",
-        "format-icons": ["", "", "", "", ""],
-        "states": {
-            "critical": 15,
-            "warning": 90
-        },
-        "colors": {
-            "good": "#A3BE8C",
-            "warning": "#EBCB8B",
-            "critical": "#BF616A"
-        },
-        "tooltip-format": "   {capacity}% "
-    }
+"battery": {
+    "format": "{icon}",
+    "format-charging": " \n{capacity}%",
+    "format-full": "󱈏",
+    "format-icons": ["", "", "", "", ""],
+    "states": {
+        "critical": 15,
+        "warning": 30,
+        "good": 50,
+        "full": 95
+    },
+    "tooltip-format": "Battery: {capacity}% ({time})",
+    "interval": 5
+}
 }
 
