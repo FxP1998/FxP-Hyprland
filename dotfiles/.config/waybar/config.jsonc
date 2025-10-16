@@ -1,5 +1,5 @@
 {
-    "layer": "top",
+    "layer": "bottom",
     "position": "right", 
     "width": 50,
     "margin-top": 5,
@@ -8,8 +8,8 @@
     "margin-right": 5,
 
     // MODULE POSITIONS
-    "modules-left": [ "clock", "custom/screen-recording", "tray", "group/misc", "custom/updates" ],
-    "modules-center": [ "hyprland/workspaces" ],
+    "modules-left": [ "clock", "custom/screen-recording", "group/misc", "custom/updates" ],
+    "modules-center": [ "hyprland/workspaces", "tray" ],
     "modules-right": [ "custom/separator", "group/volume", "network", "battery" ],
 
     // MODULES ON LEFT
