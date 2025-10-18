@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # ==========================================
 # FxP DOTFILES INSTALLER SCRIPT
@@ -14,22 +14,23 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Icons (using Nerd Fonts)
-ICON_INFO=""
+ICON_INFO=""
 ICON_SUCCESS=""
 ICON_WARNING=""
 ICON_ERROR=""
 ICON_FOLDER=""
-ICON_FILE="󰈔"
-ICON_COPY=""
-ICON_BACKUP="󰁯"
+ICON_FILE=""
+ICON_COPY="󰆐"
+ICON_BACKUP=""
 ICON_FONT=""
-ICON_CHECK=""
+ICON_CHECK="󰄬"
+ICON_SHIELD="󰒃"
 
-# Script variables - DYNAMIC DETECTION
+# Script variables
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES_DIR="$SCRIPT_DIR/dotfiles"
-BACKUP_DIR="$HOME/user_old_config_$(date +%Y%m%d_%H%M%S)"
 CURRENT_USER=$(whoami)
+BACKUP_DIR="$HOME/.config/${CURRENT_USER}_old_config_$(date +%Y%m%d_%H%M%S)"
 
 print_header() {
     echo -e "${PURPLE}
@@ -57,8 +58,40 @@ print_header() {
     echo -e "${CYAN}${ICON_INFO}  FxP Dotfiles Installer${NC}"
     echo -e "${CYAN}${ICON_INFO}  User: $CURRENT_USER${NC}"
     echo -e "${CYAN}${ICON_INFO}  Script Location: $SCRIPT_DIR${NC}"
-    echo -e "${CYAN}${ICON_INFO}  Dotfiles Source: $DOTFILES_DIR${NC}"
     echo -e ""
+}
+
+check_sudo_permissions() {
+    echo -e "${BLUE}${ICON_SHIELD}  Checking for sudo permissions...${NC}"
+    
+    # First attempt - check if we can create directories in system locations
+    if ! mkdir -p "$HOME/.config/test_sudo" 2>/dev/null; then
+        echo -e "${YELLOW}${ICON_WARNING}  Insufficient permissions to create directories.${NC}"
+        echo -e "${YELLOW}${ICON_INFO}  This script needs sudo permissions to:${NC}"
+        echo -e "${CYAN}    - Create directories in ~/.config/${NC}"
+        echo -e "${CYAN}    - Create directories in ~/.fonts/${NC}"
+        echo -e "${CYAN}    - Create directories in ~/.icons/${NC}"
+        echo -e "${CYAN}    - Copy files to system locations${NC}"
+        
+        # First ask for sudo
+        echo -e ""
+        echo -e "${YELLOW}${ICON_WARNING}  Please grant sudo permissions to continue.${NC}"
+        read -p "$(echo -e "${YELLOW}${ICON_INFO}  Grant sudo permissions? (Y/n): ${NC}")" -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Nn]$ ]]; then
+            # Try to run with sudo
+            echo -e "${BLUE}${ICON_SHIELD}  Attempting to run with sudo...${NC}"
+            exec sudo "$0" "$@"
+        else
+            echo -e "${RED}${ICON_ERROR}  Sudo permissions denied. Installation cancelled.${NC}"
+            exit 1
+        fi
+    else
+        # Clean up test directory
+        rmdir "$HOME/.config/test_sudo" 2>/dev/null
+        echo -e "${GREEN}${ICON_CHECK}  Sufficient permissions detected!${NC}"
+        return 0
+    fi
 }
 
 check_nerd_font() {
@@ -71,7 +104,6 @@ check_nerd_font() {
         echo -e "${YELLOW}${ICON_WARNING}  No Nerd Fonts found!${NC}"
         echo -e "${YELLOW}${ICON_INFO}  Please install a Nerd Font manually:${NC}"
         echo -e "${CYAN}    sudo pacman -S ttf-nerd-fonts-symbols${NC}"
-        echo -e "${CYAN}    Or download from: https://www.nerdfonts.com/${NC}"
         echo -e "${YELLOW}${ICON_WARNING}  Continuing without Nerd Fonts...${NC}"
         return 1
     fi
@@ -97,6 +129,7 @@ copy_with_backup() {
     local source="$1"
     local destination="$2"
     
+    # Only backup if destination exists
     if [ -e "$destination" ]; then
         create_backup "$destination"
         echo -e "${YELLOW}${ICON_COPY}  Replacing: $destination${NC}"
@@ -128,28 +161,121 @@ install_dotfiles() {
         exit 1
     fi
     
-    # Dynamically copy ALL contents from dotfiles to home directory
-    echo -e "${BLUE}${ICON_INFO}  Copying contents from: $DOTFILES_DIR${NC}"
-    echo -e "${BLUE}${ICON_INFO}  Destination: $HOME${NC}"
+    # Copy .config contents (copy everything INSIDE .config to ~/.config)
+    if [ -d "$DOTFILES_DIR/.config" ]; then
+        echo -e "${BLUE}${ICON_FOLDER}  Copying .config contents...${NC}"
+        for config_item in "$DOTFILES_DIR/.config"/*; do
+            if [ -e "$config_item" ]; then
+                local item_name=$(basename "$config_item")
+                local destination="$HOME/.config/$item_name"
+                
+                # Only backup if the target exists in ~/.config
+                if [ -e "$destination" ]; then
+                    create_backup "$destination"
+                    echo -e "${YELLOW}${ICON_COPY}  Replacing: $destination${NC}"
+                else
+                    echo -e "${BLUE}${ICON_COPY}  Copying new: $destination${NC}"
+                fi
+                
+                mkdir -p "$(dirname "$destination")"
+                cp -r "$config_item" "$destination"
+                
+                if [ $? -eq 0 ]; then
+                    echo -e "${GREEN}${ICON_SUCCESS}  Success: $destination${NC}"
+                else
+                    echo -e "${RED}${ICON_ERROR}  Failed: $destination${NC}"
+                fi
+            fi
+        done
+    fi
     
-    # Copy everything from dotfiles directory to home
-    for item in "$DOTFILES_DIR"/* "$DOTFILES_DIR"/.*; do
+    # Copy .fonts contents
+    if [ -d "$DOTFILES_DIR/.fonts" ]; then
+        echo -e "${BLUE}${ICON_FOLDER}  Copying .fonts contents...${NC}"
+        for font_item in "$DOTFILES_DIR/.fonts"/*; do
+            if [ -e "$font_item" ]; then
+                local item_name=$(basename "$font_item")
+                local destination="$HOME/.fonts/$item_name"
+                
+                if [ -e "$destination" ]; then
+                    create_backup "$destination"
+                    echo -e "${YELLOW}${ICON_COPY}  Replacing: $destination${NC}"
+                else
+                    echo -e "${BLUE}${ICON_COPY}  Copying new: $destination${NC}"
+                fi
+                
+                mkdir -p "$(dirname "$destination")"
+                cp -r "$font_item" "$destination"
+                
+                if [ $? -eq 0 ]; then
+                    echo -e "${GREEN}${ICON_SUCCESS}  Success: $destination${NC}"
+                else
+                    echo -e "${RED}${ICON_ERROR}  Failed: $destination${NC}"
+                fi
+            fi
+        done
+    fi
+    
+    # Copy .icons contents
+    if [ -d "$DOTFILES_DIR/.icons" ]; then
+        echo -e "${BLUE}${ICON_FOLDER}  Copying .icons contents...${NC}"
+        for icon_item in "$DOTFILES_DIR/.icons"/*; do
+            if [ -e "$icon_item" ]; then
+                local item_name=$(basename "$icon_item")
+                local destination="$HOME/.icons/$item_name"
+                
+                if [ -e "$destination" ]; then
+                    create_backup "$destination"
+                    echo -e "${YELLOW}${ICON_COPY}  Replacing: $destination${NC}"
+                else
+                    echo -e "${BLUE}${ICON_COPY}  Copying new: $destination${NC}"
+                fi
+                
+                mkdir -p "$(dirname "$destination")"
+                cp -r "$icon_item" "$destination"
+                
+                if [ $? -eq 0 ]; then
+                    echo -e "${GREEN}${ICON_SUCCESS}  Success: $destination${NC}"
+                else
+                    echo -e "${RED}${ICON_ERROR}  Failed: $destination${NC}"
+                fi
+            fi
+        done
+    fi
+    
+    # Copy individual dotfiles from root
+    echo -e "${BLUE}${ICON_FILE}  Copying individual dotfiles...${NC}"
+    for item in "$DOTFILES_DIR"/.*; do
         # Skip . and .. entries
-        if [ "$item" = "$DOTFILES_DIR/*" ] || [ "$item" = "$DOTFILES_DIR/.*" ]; then
+        if [ "$item" = "$DOTFILES_DIR/." ] || [ "$item" = "$DOTFILES_DIR/.." ]; then
             continue
         fi
         
         local item_name=$(basename "$item")
         
-        # Skip the dotfiles directory itself
-        if [ "$item_name" = "." ] || [ "$item_name" = ".." ]; then
+        # Skip directories we already handled
+        if [ "$item_name" = ".config" ] || [ "$item_name" = ".fonts" ] || [ "$item_name" = ".icons" ]; then
             continue
         fi
         
-        local destination="$HOME/$item_name"
-        
-        if [ -e "$item" ]; then
-            copy_with_backup "$item" "$destination"
+        # Only copy files (not directories)
+        if [ -f "$item" ]; then
+            local destination="$HOME/$item_name"
+            
+            if [ -e "$destination" ]; then
+                create_backup "$destination"
+                echo -e "${YELLOW}${ICON_COPY}  Replacing: $destination${NC}"
+            else
+                echo -e "${BLUE}${ICON_COPY}  Copying new: $destination${NC}"
+            fi
+            
+            cp "$item" "$destination"
+            
+            if [ $? -eq 0 ]; then
+                echo -e "${GREEN}${ICON_SUCCESS}  Success: $destination${NC}"
+            else
+                echo -e "${RED}${ICON_ERROR}  Failed: $destination${NC}"
+            fi
         fi
     done
 }
@@ -177,6 +303,9 @@ show_summary() {
 
 main() {
     print_header
+    
+    # Check sudo permissions first
+    check_sudo_permissions "$@"
     
     # Check for nerd fonts (but don't stop if not found)
     check_nerd_font
