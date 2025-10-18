@@ -327,3 +327,5 @@ main() {
 
 # Run main function
 main "$@"
+
+# End of the script
