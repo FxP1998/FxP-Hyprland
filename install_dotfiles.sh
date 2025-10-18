@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ==========================================
 # FxP DOTFILES INSTALLER SCRIPT
@@ -18,31 +18,27 @@ ICON_INFO=""
 ICON_SUCCESS=""
 ICON_WARNING=""
 ICON_ERROR=""
-ICON_FOLDER=""
-ICON_FILE=""
-ICON_COPY="󱁥"
-ICON_BACKUP=""
-ICON_FONT=""
+ICON_FOLDER=""
+ICON_FILE="󰈔"
+ICON_COPY=""
+ICON_BACKUP="󰁯"
+ICON_FONT=""
 ICON_CHECK=""
 
-# Script variables
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DOTFILES_DIR="$REPO_DIR/dotfiles"
+# Script variables - DYNAMIC DETECTION
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$SCRIPT_DIR/dotfiles"
 BACKUP_DIR="$HOME/user_old_config_$(date +%Y%m%d_%H%M%S)"
 CURRENT_USER=$(whoami)
 
-# ==========================================
-# FUNCTIONS
-# ==========================================
-
 print_header() {
     echo -e "${PURPLE}
-    ███████╗██╗██████╗ ███████╗██████╗ ██████╗ ██████╗ 
-    ██╔════╝██║██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗
-    █████╗  ██║██████╔╝█████╗  ██║  ██║██████╔╝██║  ██║
-    ██╔══╝  ██║██╔══██╗██╔══╝  ██║  ██║██╔══██╗██║  ██║
-    ██║     ██║██║  ██║███████╗██████╔╝██║  ██║██████╔╝
-    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝  ╚═╝╚═════╝ 
+    ███████╗██╗██████╗ ███████╗██████╗ ██╗██████╗ ██████╗ 
+    ██╔════╝██║██╔══██╗██╔════╝██╔══██╗██║██╔══██╗██╔══██╗
+    █████╗  ██║██████╔╝█████╗  ██████╔╝██║██████╔╝██║  ██║
+    ██╔══╝  ██║██╔══██╗██╔══╝  ██╔══██╗██║██╔══██╗██║  ██║
+    ██║     ██║██║  ██║███████╗██████╔╝██║██║  ██║██████╔╝
+    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝╚═════╝ 
     
                       ██╗  ██╗
                        ╚██╗██╔╝
@@ -51,16 +47,17 @@ print_header() {
                        ██╔╝ ██╗
                        ╚═╝  ╚═╝
     
-    ██████╗ ██╗  ██╗███████╗██╗  ██╗███╗   ██╗██╗██╗  ██╗
-    ██╔══██╗██║  ██║██╔════╝██║  ██║████╗  ██║██║╚██╗██╔╝
-    ██████╔╝███████║█████╗  ███████║██╔██╗ ██║██║ ╚███╔╝ 
-    ██╔═══╝ ██╔══██║██╔══╝  ██╔══██║██║╚██╗██║██║ ██╔██╗ 
-    ██║     ██║  ██║███████╗██║  ██║██║ ╚████║██║██╔╝ ██╗
-    ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝
+    ██████╗ ██╗  ██╗ ██████╗ ███████╗███╗   ██╗██╗██╗  ██╗
+    ██╔══██╗██║  ██║██╔═══██╗██╔════╝████╗  ██║██║╚██╗██╔╝
+    ██████╔╝███████║██║   ██║█████╗  ██╔██╗ ██║██║ ╚███╔╝ 
+    ██╔═══╝ ██╔══██║██║   ██║██╔══╝  ██║╚██╗██║██║ ██╔██╗ 
+    ██║     ██║  ██║╚██████╔╝███████╗██║ ╚████║██║██╔╝ ██╗
+    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝
     ${NC}"
     echo -e "${CYAN}${ICON_INFO}  FxP Dotfiles Installer${NC}"
     echo -e "${CYAN}${ICON_INFO}  User: $CURRENT_USER${NC}"
-    echo -e "${CYAN}${ICON_INFO}  Repository: $REPO_DIR${NC}"
+    echo -e "${CYAN}${ICON_INFO}  Script Location: $SCRIPT_DIR${NC}"
+    echo -e "${CYAN}${ICON_INFO}  Dotfiles Source: $DOTFILES_DIR${NC}"
     echo -e ""
 }
 
@@ -124,51 +121,49 @@ install_dotfiles() {
     mkdir -p "$BACKUP_DIR"
     echo -e "${BLUE}${ICON_BACKUP}  Backup directory: $BACKUP_DIR${NC}"
     
-    # Copy .config directories
-    for config_dir in "$DOTFILES_DIR/.config"/*; do
-        if [ -d "$config_dir" ]; then
-            local dir_name=$(basename "$config_dir")
-            copy_with_backup "$config_dir" "$HOME/.config/$dir_name"
+    # Check if dotfiles directory exists
+    if [ ! -d "$DOTFILES_DIR" ]; then
+        echo -e "${RED}${ICON_ERROR}  Dotfiles directory not found: $DOTFILES_DIR${NC}"
+        echo -e "${RED}  Please make sure the 'dotfiles' folder exists in the same directory as this script.${NC}"
+        exit 1
+    fi
+    
+    # Dynamically copy ALL contents from dotfiles to home directory
+    echo -e "${BLUE}${ICON_INFO}  Copying contents from: $DOTFILES_DIR${NC}"
+    echo -e "${BLUE}${ICON_INFO}  Destination: $HOME${NC}"
+    
+    # Copy everything from dotfiles directory to home
+    for item in "$DOTFILES_DIR"/* "$DOTFILES_DIR"/.*; do
+        # Skip . and .. entries
+        if [ "$item" = "$DOTFILES_DIR/*" ] || [ "$item" = "$DOTFILES_DIR/.*" ]; then
+            continue
+        fi
+        
+        local item_name=$(basename "$item")
+        
+        # Skip the dotfiles directory itself
+        if [ "$item_name" = "." ] || [ "$item_name" = ".." ]; then
+            continue
+        fi
+        
+        local destination="$HOME/$item_name"
+        
+        if [ -e "$item" ]; then
+            copy_with_backup "$item" "$destination"
         fi
     done
-    
-    # Copy .config files
-    for config_file in "$DOTFILES_DIR/.config"/*; do
-        if [ -f "$config_file" ]; then
-            local file_name=$(basename "$config_file")
-            copy_with_backup "$config_file" "$HOME/.config/$file_name"
-        fi
-    done
-    
-    # Copy .fonts
-    if [ -d "$DOTFILES_DIR/.fonts" ]; then
-        copy_with_backup "$DOTFILES_DIR/.fonts" "$HOME/.fonts"
-    fi
-    
-    # Copy .icons
-    if [ -d "$DOTFILES_DIR/.icons" ]; then
-        copy_with_backup "$DOTFILES_DIR/.icons" "$HOME/.icons"
-    fi
-    
-    # Copy .bashrc
-    if [ -f "$DOTFILES_DIR/.bashrc" ]; then
-        copy_with_backup "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc"
-    fi
 }
 
 show_summary() {
     echo -e "${PURPLE}
     ┌──────────────────────────────────────────────┐
-    │                 INSTALLATION SUMMARY          │
+    │                 INSTALLATION SUMMARY         │
     └──────────────────────────────────────────────┘${NC}"
     
     echo -e "${GREEN}${ICON_SUCCESS}  Dotfiles installed successfully!${NC}"
     echo -e "${BLUE}${ICON_BACKUP}  Backups saved to: $BACKUP_DIR${NC}"
-    echo -e "${CYAN}${ICON_INFO}  Installed components:${NC}"
-    echo -e "  ${ICON_FOLDER}  Configurations: ~/.config/"
-    echo -e "  ${ICON_FONT}  Fonts: ~/.fonts/"
-    echo -e "  ${ICON_FOLDER}  Icons: ~/.icons/"
-    echo -e "  ${ICON_FILE}  Shell: ~/.bashrc"
+    echo -e "${CYAN}${ICON_INFO}  Source: $DOTFILES_DIR${NC}"
+    echo -e "${CYAN}${ICON_INFO}  Destination: $HOME${NC}"
     echo -e ""
     echo -e "${YELLOW}${ICON_WARNING}  Next steps:${NC}"
     echo -e "  ${ICON_INFO}  Restart your terminal or run: source ~/.bashrc"
@@ -182,13 +177,6 @@ show_summary() {
 
 main() {
     print_header
-    
-    # Check if we're in the right directory
-    if [ ! -d "$DOTFILES_DIR" ]; then
-        echo -e "${RED}${ICON_ERROR}  Error: dotfiles directory not found!${NC}"
-        echo -e "${RED}  Please run this script from the repository root.${NC}"
-        exit 1
-    fi
     
     # Check for nerd fonts (but don't stop if not found)
     check_nerd_font
