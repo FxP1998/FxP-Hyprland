@@ -1,5 +1,0 @@
-maplemono-nf
-nitch
-osd-bin
-xob
-youtube-music-bin
