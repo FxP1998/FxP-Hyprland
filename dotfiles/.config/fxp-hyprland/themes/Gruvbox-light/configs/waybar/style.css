@@ -1,0 +1,234 @@
+@import "./color.css";
+
+/* ==========================================
+   BASE STYLING
+   ========================================== */
+
+* {
+    border: none;
+    font-family: "Hack", "MapleMonO NF", "0xProto Nerd Font", "Font Awesome", "Material Icons", sans-serif;
+    min-width: 5px;
+    padding: 0px;
+    margin: 0;
+}
+
+window#waybar {
+    background: @bg;
+    color: @fg;
+    border: 2px solid @red;
+    min-width: 50px;
+}
+
+/* ==========================================
+   MODULE ALIGNMENT & CONSISTENCY
+   ========================================== */
+
+#clock, #custom-updates, #custom-screen-recording, #tray,
+#pulseaudio, #battery, #network, #bluetooth {
+    font-size: 15px;
+    font-weight: 500;
+    min-width: 40px;
+    padding: 8px 0px;
+}
+
+/* ==========================================
+   CLOCK STYLING
+   ========================================== */
+
+#clock {
+    font-size: x-large;
+    font-weight: bold;
+    min-width: 10px;
+    padding: 20px 0px 0px 0px;
+}
+
+/* ==========================================
+   WORKSPACES STYLING
+   ========================================== */
+
+#workspaces {
+    min-width: 8px;
+    margin: 30px;
+    transition: all 0.4s ease-in-out;
+    padding: 0px;
+}
+
+#workspaces button {
+    color: transparent;
+    background: linear-gradient(180deg, @gray 0%, @bg 100%);
+    transition: all 0.4s ease-in-out;
+    min-width: 5px;
+    min-height: 0px;
+    margin: 5px 0px;
+    border-radius: 5px;
+}
+
+#workspaces button.active {
+    color: transparent;
+    background: linear-gradient(180deg, @red 20%, @purple 80%);
+    transition: all 0.4s ease-in-out;
+    font-size: 13px;
+    min-height: 75px;
+    border-radius: 25px;
+}
+
+#workspaces button:hover {
+    color: transparent;
+    background: linear-gradient(180deg, @orange 50%, @green 50%);
+    transition: all 0.4s ease-in-out;
+    border-radius: 20px;
+    min-height: 30px;
+}
+
+/* ==========================================
+   VOLUME SLIDER STYLING
+   ========================================== */
+
+slider {
+    min-width: 5px;
+    min-height: 20px;
+}
+
+#pulseaudio-slider slider {
+    min-width: 10px;
+    min-height: 10px;
+    border-radius: 25px;
+    background: @bg-alt;
+}
+
+#pulseaudio-slider trough {
+    min-width: 0px;
+    min-height: 100px;
+    border-radius: 25px;
+    background: linear-gradient(180deg, @bg 0%, @bg 100%);
+}
+
+#pulseaudio-slider highlight {
+    min-width: 8px;
+    border-radius: 25px;
+    background: linear-gradient(180deg, @critical 30%, @bg-alt 100%);
+}
+
+/* ==========================================
+   VOLUME MODULE STYLING
+   ========================================== */
+
+#pulseaudio {
+    color: @blue;
+}
+
+#pulseaudio.muted {
+    color: @red;
+}
+
+/* ==========================================
+   BATTERY MODULE STYLING
+   ========================================== */
+
+#battery {
+    padding: 8px 0px 12px 0px;
+    transition: color 0.3s ease-in-out;
+    color: @green;
+}
+
+#battery.critical {
+    color: @critical;
+}
+
+#battery.warning {
+    color: @warning;
+}
+
+#battery.good {
+    color: @green;
+}
+
+#battery.full {
+    color: @blue;
+}
+
+#battery.charging {
+    color: @aqua;
+}
+
+/* ==========================================
+   NETWORK MODULE STYLING
+   ========================================== */
+
+#network {
+    color: @aqua;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+#network.ethernet {
+    color: @blue;
+}
+
+#network.wifi {
+    color: @green;
+}
+
+/* ==========================================
+   BLUETOOTH MODULE STYLING
+   ========================================== */
+
+#bluetooth {
+    color: @purple;
+}
+
+#bluetooth.connected {
+    color: @blue;
+}
+
+#bluetooth.on {
+    color: @yellow;
+}
+
+#bluetooth.off {
+    color: @red;
+}
+
+/* ==========================================
+   SEPARATOR STYLING
+   ========================================== */
+
+#custom-separator {
+    padding: 5px 0px 5px 0px;
+    color: @gray;
+}
+
+/* ==========================================
+   TRAY STYLING
+   ========================================== */
+
+#tray {
+    color: @fg-alt;
+}
+
+/* ==========================================
+   UPDATES MODULE STYLING
+   ========================================== */
+
+#custom-updates {
+    color: @yellow;
+}
+
+/* ==========================================
+   SCREEN RECORDING MODULE STYLING
+   ========================================== */
+
+#custom-screen-recording {
+    color: @red;
+}
+
+/* ==========================================
+   GROUP CONTAINER STYLING
+   ========================================== */
+
+#group-volume, #group-misc {
+    min-width: 40px;
+    padding: 5px 0px;
+}

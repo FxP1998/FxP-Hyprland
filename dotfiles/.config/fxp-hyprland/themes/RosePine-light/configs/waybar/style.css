@@ -1,0 +1,194 @@
+/* ======================== */
+/*  Rosé greenlight Waybar Theme  */
+/* ======================== */
+
+
+@import "./color.css";
+
+
+* {
+    border: none;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Material Icons", sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    min-height: 0;
+    padding: 0 2 0 0px;
+}
+
+
+window#waybar {
+    background: @bg;
+    color: @fg;
+}
+
+
+
+
+
+#clock {
+    color: @yellow;
+    border-radius: 25 0 0 25;
+}
+
+#window {
+    border-radius: 0 25 25 0;
+    color: @green;
+}
+
+
+
+
+
+#workspaces button {
+    padding: 0 5px;
+    background: @transparent;
+    color: @gray;
+}
+
+#workspaces button.active {
+    color: @red;
+}
+
+#workspaces button:hover {
+    color: @red;
+}
+
+#workspaces {
+    border-radius: 25;
+}
+
+
+
+
+
+#network,
+#network.wifi,
+#network.ethernet,
+#network.disconnected,
+#network.wifi.wifi-weak,
+#network.wifi.wifi.fair,
+#network.wifi.wifi.good,
+#network.wifi.wifi.excellent {
+    color: @green;
+    border-radius: 25px 0 0 25px;
+}
+
+/* Network states - only color changes */
+#network.wifi {
+    color: @blue;
+}
+
+#network.ethernet {
+    color: @aqua;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+/* Signal strength variations - only color changes */
+#network.wifi.wifi-weak {
+    color: @orange;
+}
+
+#network.wifi.wifi-fair {
+    color: @yellow;
+}
+
+#network.wifi.wifi-good {
+    color: @green;
+}
+
+#network.wifi.wifi-excellent {
+    color: @aqua;
+}
+
+
+#tray {
+    color: @red;
+}
+
+#pulseaudio {
+    color: @red;
+}
+
+#pulseaudio.aqualight {
+    color: @aqua;
+}
+
+#battery{
+    color: @purple;
+    border-radius: 0 25 25 0px;
+    font-weight: normal;
+}
+
+
+
+#clock,
+#custom-updates,
+#window,
+#custom-screen-recording,
+#workspaces,
+#network,
+#tray,
+#pulseaudio, 
+#pulseaudio.mute,
+#bluetooth,
+#battery{
+    background-color: @bg;
+    padding: 0 20px;
+    margin: 0 0px;
+}
+
+#window {
+}
+
+/* ============== */
+/* MODULE SPACING */
+/* ============== */
+
+.modules-left,
+.modules-center,
+.modules-right {
+    margin: 0 0px;
+}
+
+/* ============== */
+/*   TOOLTIP STYLE */
+/* ============== */
+
+tooltip {
+    background: @bg;
+    color: @fg;
+    border: 2px solid @red;
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 12px;
+}
+
+
+/*ALL TRAY RELATED CONFIG IS HERE*/
+/* Blinking animation for the recording dot */
+@keyframes blink-record {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Style for the screen recording indicator */
+#custom-screen-recording span {
+    color: @red; /* Color of the dot */
+    font-size: 2px; /* Adjust size as needed */
+}
+
+/* Apply blinking animation when recording is active */
+#custom-screen-recording-recording-active span {
+    animation: blink-record 1s infinite alternate; /* 1s duration, infinite loop, alternate direction */
+}
+
