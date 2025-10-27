@@ -32,7 +32,7 @@ alias ucd='cd ~/Projects/FxP-Hyprland/ && la && ./stow.sh'
 
 # The Ultimate Extactor
 # Required pakages "unzip unrar p7zip zstd xz gzip bzip2 tar"
-extract () {
+x () {
     if [[ -f "$1" ]]; then
         filepath=$(realpath "$1")
         filename=$(basename -- "$filepath")
