@@ -117,3 +117,13 @@ alias ytv='mkdir -p ~/Videos/yt-dlp-video && yt-dlp -f "bestvideo[height<=1080][
 # Download audio (best quality, mp3 format with thumbnail) to ~/Music/yt-dlp-audio/
 alias yta='mkdir -p ~/Music/yt-dlp-audio && yt-dlp -f "ba" --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --add-metadata -o "~/Music/yt-dlp-audio/%(title)s.%(ext)s"'
 
+
+# Sortcuts
+alias gr='cd ~/Projects/FxP-Hyprland/'
+alias sf='cd ~/Projects/FxP-Hyprland/ && ./stow.sh'
+alias df='cd ~/Projects/FxP-Hyprland/dotfiles'
+alias gc='cd ~/Projects/FxP-Hyprland/dotfiles/.config'
+alias lc='cd ~/.config/'
+
+
+alias sn='shutdown now'

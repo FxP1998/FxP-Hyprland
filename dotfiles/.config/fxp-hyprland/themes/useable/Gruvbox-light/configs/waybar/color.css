@@ -1,0 +1,19 @@
+/* GRUVBOX LIGHT COLOR VARIABLES */
+@define-color bg #fbf1c7;
+@define-color bg-alt #f2e5bc;
+@define-color fg #3c3836;
+@define-color fg-alt #504945;
+
+/* GRUVBOX LIGHT ACCENT COLORS */
+@define-color red #cc241d;
+@define-color blue #458588;
+@define-color green #98971a;
+@define-color yellow #d79921;
+@define-color orange #d65d0e;
+@define-color purple #b16286;
+@define-color aqua #689d6a;
+@define-color gray #7c6f64;
+
+/* GRUVBOX LIGHT STATUS */
+@define-color warning #d79921;
+@define-color critical #cc241d;
