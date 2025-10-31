@@ -1,19 +1,19 @@
-/* ROSÉ PINE LIGHT COLOR VARIABLES */
-@define-color bg #faf4ed;
-@define-color bg-alt #fffaf3;
-@define-color fg #575279;
-@define-color fg-alt #797593;
+/* ROSÉ PINE DARK COLOR VARIABLES */
+@define-color bg #191724;
+@define-color bg-alt #1f1d2e;
+@define-color fg #e0def4;
+@define-color fg-alt #908caa;
 
-/* ROSÉ PINE LIGHT ACCENT COLORS */
-@define-color red #b4637a;
-@define-color blue #286983;
-@define-color green #56949f;
-@define-color yellow #ea9d34;
-@define-color orange #d7827e;
-@define-color purple #907aa9;
-@define-color aqua #d7827e;
-@define-color gray #9893a5;
+/* ROSÉ PINE DARK ACCENT COLORS */
+@define-color red #eb6f92;
+@define-color blue #31748f;
+@define-color green #9ccfd8;
+@define-color yellow #f6c177;
+@define-color orange #ea9a97;
+@define-color purple #c4a7e7;
+@define-color aqua #ebbcba;
+@define-color gray #6e6a86;
 
-/* ROSÉ PINE LIGHT STATUS */
-@define-color warning #ea9d34;
-@define-color critical #b4637a;
+/* ROSÉ PINE DARK STATUS */
+@define-color warning #f6c177;
+@define-color critical #eb6f92;

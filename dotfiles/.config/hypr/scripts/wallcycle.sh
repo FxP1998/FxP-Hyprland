@@ -2,7 +2,7 @@
 # 󰉋 SWWW Wallpaper Setter - Everforest Dark Edition 🌲
 
 # CONFIGURATION
-WALL_DIR="$HOME/.config/fxp-hyprland/themes/useable/RosePine-light/wallpapers"
+WALL_DIR="$HOME/.config/fxp-hyprland/themes/useable/RosePine-dark/wallpapers"
 TMP_DIR="$HOME/.config/hypr/hyprlock-bg"
 DURATION=3
 SWWW_LOG="/tmp/swww-daemon.log"
