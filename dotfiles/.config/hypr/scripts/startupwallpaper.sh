@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-swww img ~/.config/fxp-hyprland/themes/useable/RosePine-dark/wallpapers/blockwavemoon.png --transition-type none
+swww img ~/.config/fxp-hyprland/themes/useable/RosePine-light/wallpapers/spiderman.png --transition-type none
