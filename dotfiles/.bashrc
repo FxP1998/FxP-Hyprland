@@ -130,3 +130,4 @@ alias sn='shutdown now'
 
 
 alias ct='/home/fxp/Projects/FxP-Hyprland/dotfiles/.config/fxp-hyprland/scripts/custom/theme-switcher/theme-switcher.sh'
+alias gp='/home/fxp/Projects/FxP-Hyprland/dotfiles/.config/fxp-hyprland/scripts/custom/Github-Auto-Pusher/github-pusher.sh'
