@@ -127,3 +127,6 @@ alias lc='cd ~/.config/'
 
 
 alias sn='shutdown now'
+
+
+alias ct='/home/fxp/Projects/FxP-Hyprland/dotfiles/.config/fxp-hyprland/scripts/custom/theme-switcher/theme-switcher.sh'

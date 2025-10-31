@@ -1,20 +1,11 @@
 [config]
 allow_images=true
-<<<<<<< HEAD
 width=700
 show=drun
 prompt=Search
 height=350
 term=kitty
 hide_scroll=false
-=======
-width=500
-show=drun
-prompt=Search
-height=400
-term=kitty
-hide_scroll=true
->>>>>>> refs/remotes/origin/main
 print_command=true
 insensitive=true
 columns=1
