@@ -44,6 +44,7 @@ fi
 # ✨ Apply wallpaper
 if swww img "$dest" \
     --transition-type "grow" \
+    --transition-fps "60" \
     --transition-duration "$DURATION" 2>/dev/null; then
 
     notify-send -u low -i "$dest" "󰄛  Wallpaper Changed" "   ${filename}"

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# 󰉋 SWWW Wallpaper Setter - Everforest Dark Edition 🌲
 
 # CONFIGURATION
 WALL_DIR="$HOME/.config/fxp-hyprland/themes/useable/Gruvbox-dark/wallpapers"
@@ -44,6 +43,7 @@ fi
 # ✨ Apply wallpaper
 if swww img "$dest" \
     --transition-type "grow" \
+    --transition-fps "60" \
     --transition-duration "$DURATION" 2>/dev/null; then
 
     notify-send -u low -i "$dest" "󰄛  Wallpaper Changed" "   ${filename}"
