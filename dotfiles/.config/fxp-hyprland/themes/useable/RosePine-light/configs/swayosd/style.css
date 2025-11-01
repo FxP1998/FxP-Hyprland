@@ -1,0 +1,21 @@
+/* Rosé Pine Light */
+window#osd {
+  background: #faf4ed;
+  border: 2px solid #575279;
+}
+
+progressbar trough {
+    background: #dfdad9;
+    border-radius: 25px;
+    min-height: 8px;
+}
+
+progressbar progress {
+    background: #d7827e;
+    border-radius: 25px;
+    min-height: 8px;
+}
+
+image {
+    color: #ea9d34;
+}

@@ -1,118 +1,118 @@
-" Rosé Pine Light Full Color Scheme for Vim
-set background=light
+" Gruvbox Dark Full Color Scheme for Vim
+set background=dark
 set termguicolors
 
-" Rosé Pine Light Base Colors
-highlight Normal guibg=#faf4ed guifg=#575279
-highlight NormalFloat guibg=#fffaf3 guifg=#575279
-highlight Comment guifg=#9893a5 gui=italic
-highlight Constant guifg=#b4637a
-highlight String guifg=#ea9d34
-highlight Character guifg=#d7827e
-highlight Number guifg=#b4637a
-highlight Boolean guifg=#b4637a
-highlight Float guifg=#b4637a
+" Gruvbox Dark Base Colors
+highlight Normal guibg=#282828 guifg=#ebdbb2
+highlight NormalFloat guibg=#3c3836 guifg=#ebdbb2
+highlight Comment guifg=#928374 gui=italic
+highlight Constant guifg=#fb4934
+highlight String guifg=#b8bb26
+highlight Character guifg=#d3869b
+highlight Number guifg=#d3869b
+highlight Boolean guifg=#fb4934
+highlight Float guifg=#d3869b
 
 " Identifiers
-highlight Identifier guifg=#d7827e
-highlight Function guifg=#d7827e
-highlight Variable guifg=#575279
+highlight Identifier guifg=#83a598
+highlight Function guifg=#8ec07c
+highlight Variable guifg=#ebdbb2
 
 " Statements
-highlight Statement guifg=#286983
-highlight Conditional guifg=#286983
-highlight Repeat guifg=#286983
-highlight Label guifg=#286983
-highlight Operator guifg=#d7827e
-highlight Keyword guifg=#286983
-highlight Exception guifg=#b4637a
+highlight Statement guifg=#fabd2f
+highlight Conditional guifg=#fb4934
+highlight Repeat guifg=#fb4934
+highlight Label guifg=#fe8019
+highlight Operator guifg=#ebdbb2
+highlight Keyword guifg=#fb4934
+highlight Exception guifg=#fb4934
 
 " Preprocessor
-highlight PreProc guifg=#56949f
-highlight Include guifg=#56949f
-highlight Define guifg=#56949f
-highlight Macro guifg=#56949f
-highlight PreCondit guifg=#56949f
+highlight PreProc guifg=#8ec07c
+highlight Include guifg=#8ec07c
+highlight Define guifg=#8ec07c
+highlight Macro guifg=#8ec07c
+highlight PreCondit guifg=#8ec07c
 
 " Types
-highlight Type guifg=#907aa9
-highlight StorageClass guifg=#907aa9
-highlight Structure guifg=#907aa9
-highlight Typedef guifg=#907aa9
+highlight Type guifg=#d3869b
+highlight StorageClass guifg=#fe8019
+highlight Structure guifg=#8ec07c
+highlight Typedef guifg=#8ec07c
 
 " Special
-highlight Special guifg=#ea9d34
-highlight SpecialChar guifg=#b4637a
-highlight Tag guifg=#56949f
-highlight Delimiter guifg=#575279
-highlight SpecialComment guifg=#9893a5
-highlight Debug guifg=#b4637a
+highlight Special guifg=#fe8019
+highlight SpecialChar guifg=#fb4934
+highlight Tag guifg=#8ec07c
+highlight Delimiter guifg=#ebdbb2
+highlight SpecialComment guifg=#928374
+highlight Debug guifg=#fb4934
 
 " UI Elements
-highlight LineNr guifg=#9893a5
-highlight CursorLineNr guifg=#575279 gui=bold
-highlight CursorLine guibg=#fffaf3
-highlight CursorColumn guibg=#fffaf3
-highlight ColorColumn guibg=#fffaf3
-highlight SignColumn guibg=#faf4ed guifg=#9893a5
-highlight FoldColumn guibg=#faf4ed guifg=#9893a5
-highlight Folded guibg=#fffaf3 guifg=#9893a5
+highlight LineNr guifg=#928374
+highlight CursorLineNr guifg=#ebdbb2 gui=bold
+highlight CursorLine guibg=#3c3836
+highlight CursorColumn guibg=#3c3836
+highlight ColorColumn guibg=#3c3836
+highlight SignColumn guibg=#282828 guifg=#928374
+highlight FoldColumn guibg=#282828 guifg=#928374
+highlight Folded guibg=#3c3836 guifg=#928374
 
 " Cursor settings
-highlight Cursor guibg=#b4637a guifg=#faf4ed
-highlight iCursor guibg=#b4637a guifg=#faf4ed
-highlight CursorIM guibg=#b4637a guifg=#faf4ed
+highlight Cursor guibg=#fb4934 guifg=#282828
+highlight iCursor guibg=#fb4934 guifg=#282828
+highlight CursorIM guibg=#fb4934 guifg=#282828
 
 " Visual Mode
-highlight Visual guibg=#f2e9e1
-highlight VisualNOS guibg=#f2e9e1
+highlight Visual guibg=#458588
+highlight VisualNOS guibg=#458588
 
 " Search
-highlight Search guibg=#ea9d34 guifg=#faf4ed
-highlight IncSearch guibg=#b4637a guifg=#faf4ed
-highlight MatchParen guibg=#f2e9e1 guifg=#575279 gui=bold
+highlight Search guibg=#fabd2f guifg=#282828
+highlight IncSearch guibg=#fe8019 guifg=#282828
+highlight MatchParen guibg=#458588 guifg=#ebdbb2 gui=bold
 
 " Status Line
-highlight StatusLine guibg=#fffaf3 guifg=#575279
-highlight StatusLineNC guibg=#faf4ed guifg=#9893a5
-highlight WildMenu guibg=#907aa9 guifg=#faf4ed
+highlight StatusLine guibg=#3c3836 guifg=#ebdbb2
+highlight StatusLineNC guibg=#282828 guifg=#928374
+highlight WildMenu guibg=#fabd2f guifg=#282828
 
 " Tab Line
-highlight TabLine guibg=#fffaf3 guifg=#9893a5
-highlight TabLineSel guibg=#907aa9 guifg=#faf4ed
-highlight TabLineFill guibg=#faf4ed guifg=#9893a5
+highlight TabLine guibg=#3c3836 guifg=#928374
+highlight TabLineSel guibg=#fabd2f guifg=#282828
+highlight TabLineFill guibg=#282828 guifg=#928374
 
 " Pmenu (Completion)
-highlight Pmenu guibg=#fffaf3 guifg=#575279
-highlight PmenuSel guibg=#286983 guifg=#faf4ed
-highlight PmenuSbar guibg=#fffaf3
-highlight PmenuThumb guibg=#f2e9e1
+highlight Pmenu guibg=#3c3836 guifg=#ebdbb2
+highlight PmenuSel guibg=#458588 guifg=#282828
+highlight PmenuSbar guibg=#3c3836
+highlight PmenuThumb guibg=#665c54
 
 " Errors and Warnings
-highlight Error guibg=#b4637a guifg=#faf4ed
-highlight ErrorMsg guibg=#b4637a guifg=#faf4ed
-highlight WarningMsg guibg=#ea9d34 guifg=#faf4ed
-highlight MoreMsg guifg=#56949f
-highlight ModeMsg guifg=#575279
-highlight Question guifg=#ea9d34
+highlight Error guibg=#fb4934 guifg=#282828
+highlight ErrorMsg guibg=#fb4934 guifg=#282828
+highlight WarningMsg guibg=#fabd2f guifg=#282828
+highlight MoreMsg guifg=#8ec07c
+highlight ModeMsg guifg=#ebdbb2
+highlight Question guifg=#fabd2f
 
 " Diffs
-highlight DiffAdd guibg=#f2e9e1 guifg=#56949f
-highlight DiffChange guibg=#f2e9e1 guifg=#ea9d34
-highlight DiffDelete guibg=#f2e9e1 guifg=#b4637a
-highlight DiffText guibg=#f2e9e1 guifg=#907aa9
+highlight DiffAdd guibg=#32302f guifg=#8ec07c
+highlight DiffChange guibg=#32302f guifg=#fabd2f
+highlight DiffDelete guibg=#32302f guifg=#fb4934
+highlight DiffText guibg=#32302f guifg=#d3869b
 
 " Spelling
-highlight SpellBad gui=undercurl guisp=#b4637a
-highlight SpellCap gui=undercurl guisp=#ea9d34
-highlight SpellRare gui=undercurl guisp=#907aa9
-highlight SpellLocal gui=undercurl guisp=#56949f
+highlight SpellBad gui=undercurl guisp=#fb4934
+highlight SpellCap gui=undercurl guisp=#fabd2f
+highlight SpellRare gui=undercurl guisp=#d3869b
+highlight SpellLocal gui=undercurl guisp=#8ec07c
 
 " Special Syntax
-highlight Title guifg=#d7827e gui=bold
-highlight Todo guibg=#ea9d34 guifg=#faf4ed gui=bold
-highlight Underlined guifg=#907aa9 gui=underline
-highlight SpecialKey guifg=#9893a5
-highlight NonText guifg=#9893a5
-highlight Directory guifg=#56949f
-highlight Conceal guifg=#9893a5
+highlight Title guifg=#83a598 gui=bold
+highlight Todo guibg=#fabd2f guifg=#282828 gui=bold
+highlight Underlined guifg=#d3869b gui=underline
+highlight SpecialKey guifg=#928374
+highlight NonText guifg=#928374
+highlight Directory guifg=#83a598
+highlight Conceal guifg=#928374

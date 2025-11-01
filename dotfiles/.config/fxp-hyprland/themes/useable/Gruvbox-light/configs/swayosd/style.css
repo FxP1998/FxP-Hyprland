@@ -1,0 +1,21 @@
+/* Gruvbox Light */
+window#osd {
+  background: #fbf1c7;
+  border: 2px solid #3c3836;
+}
+
+progressbar trough {
+    background: #d5c4a1;
+    border-radius: 25px;
+    min-height: 8px;
+}
+
+progressbar progress {
+    background: #cc241d;
+    border-radius: 25px;
+    min-height: 8px;
+}
+
+image {
+    color: #d79921;
+}

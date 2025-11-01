@@ -163,6 +163,10 @@ reload_applications() {
         dunst &
         echo "  → Dunst reloaded"
     fi
+
+    # Reload SwayOSD-Server
+    pkill -USR1 swayosd-server && swayosd-server &
+    echo "  → swayosd-server reloaded"
     
     # Execute wallpaper script
     execute_wallpaper_script
@@ -207,6 +211,9 @@ apply_theme() {
  
         # Copy everything from theme's scripts to ~/.config/hypr/scripts
         copy_all_files "$theme_path/scripts" "$CONFIG_DIR/hypr/scripts"
+
+        # Copy everything from theme's swayosd to ~/.config/swayosd/
+        copy_all_files "$theme_path/configs/swayosd" "$CONFIG_DIR/swayosd"
        
         # Copy everything from theme's starship to ~/.config/
         copy_all_files "$theme_path/configs/starship" "$CONFIG_DIR"

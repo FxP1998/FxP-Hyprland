@@ -23,16 +23,17 @@ $time\n  \
 [󱞪](fg:iris) \
 """
 
-palette = "rose-pine-dawn"
+palette = "gruvbox"
 
-[palettes.rose-pine-dawn]
-overlay = '#f2e9e1'
-love = '#b4637a'
-gold = '#ea9d34'
-rose = '#d7827e'
-pine = '#286983'
-foam = '#56949f'
-iris = '#907aa9'
+[palettes.gruvbox]
+overlay = '#3c3836'
+love = '#fb4934'
+gold = '#fabd2f'
+rose = '#d3869b'
+pine = '#83a598'
+foam = '#8ec07c'
+iris = '#b8bb26'
+
 
 [directory]
 format = "[](fg:overlay)[ $path ]($style)[](fg:overlay) "
@@ -52,7 +53,7 @@ symbol = " "
 
 [git_branch]
 format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay) "
-style = "bg:overlay fg:pine"
+style = "bg:overlay fg:foam"
 symbol = ""
 
 [git_status]
@@ -83,8 +84,6 @@ format = "[](fg:overlay)[ 󰧱 $user ]($style)[](fg:overlay) "
 show_always = true
 style_root = "bg:overlay fg:iris"
 style_user = "bg:overlay fg:iris"
-
-# Languages
 
 [c]
 style = "bg:overlay fg:pine"

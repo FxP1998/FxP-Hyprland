@@ -1,65 +1,38 @@
 {
-    //BASE OF THE WAYBAR
-    "layer": "top",
-    "position": "top", 
-    "height": 30, 
-    "spacing": 0, 
-    "margin-top": 3,
-    "margin-left": 10,
-    "margin-right": 10,
+    "layer": "bottom",
+    "position": "right", 
+    "width": 50,
+    "margin-top": 5,
+    "margin-bottom": 5,
+    "margin-left": 0,
+    "margin-right": 5,
 
-
-
-
-
-    //MODULE POSITIONS
-    "modules-left": [
-        "clock",
-        "custom/updates",
-        "custom/screen-recording",
-        "hyprland/window"
-       
-    ],
-
-    "modules-center": [
-        "hyprland/workspaces"
-    ],
-    
-    "modules-right": [
-        "network",
-        "pulseaudio",
-        "bluetooth",
-        "battery"        
-    ],
-
-
-
-
+    // MODULE POSITIONS
+    "modules-left": [ "clock", "custom/screen-recording", "group/misc", "custom/updates" ],
+    "modules-center": [ "hyprland/workspaces", "tray" ],
+    "modules-right": [ "custom/separator", "group/volume", "network", "battery" ],
 
     // MODULES ON LEFT
     "clock": {
-        "format": " {:%I:%M %p}",
-        "format-alt": "{:%A, %d %B %Y  %I:%M %p} 󰃰 ",
+        "format": "{:%I\n%M\n%p}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
-            "mode"          : "year",
-            "mode-mon-col"  : 3,
-            "weeks-pos"     : "left",
-            "on-scroll"     : 1,
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "left",
+            "on-scroll": 1,
             "format": {
-                "months":     "<span color='#ffead3'><b>{}</b></span>",
-                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
             }
         },
-        "actions":  {
-                "on-click-right": "mode",
-                "on-scroll-up": "tz_up",
-                "on-scroll-down": "tz_down",
-                "on-scroll-up": "shift_up",
-                "on-scroll-down": "shift_down"
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_up",
+            "on-scroll-down": "tz_down"
         }
     },
 
@@ -78,44 +51,31 @@
     },
 
     "custom/screen-recording": {
-    "format": "<span foreground='red'> 󰑊 </span>",
-    "return-type": "json",
+        "format": "<span foreground='red'> 󰑊 </span>",
+        "return-type": "json",
         "exec-if": "pgrep wf-recorder",
         "exec": "echo '{\"class\": \"recording-active\"}'",
         "interval": 1,
         "tooltip": false 
     },
 
-    "hyprland/window": {
-     "format": "{}",
-     "rewrite": {
-        "(.*) — Mozilla Firefox": "󰈹  $1",
-        "(.*) - thunar": "  $1",
-        "(.*) - vscodium": "  $1" 
-        },
-     "separate-outputs": true,
-     "tooltip": false
-    },
-
-    
     // MODULES ON CENTER
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "1": "  ",
-            "2": "  ",
-            "3": "  ",
-            "4": "  ",
-            "5": "  ",
-            "active": " 󰪥 ",
-            "default": "  "
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "active": "",
+            "default": ""
         },
         "persistent-workspaces": {
-                "*": 5, // 5 workspaces by default on every monitor
-                "HDMI-A-1": 3 // but only three on HDMI-A-1
+            "*": 5,
+            "HDMI-A-1": 3
         }
     },
-
 
     // MODULES ON RIGHT
     "network": {
@@ -124,22 +84,51 @@
         "format-wifi": "{icon}",
         "format-ethernet": "{icon}",
         "format-disconnected": "󰤭",
-
         "format-icons": {
             "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
             "ethernet": "󰈀",
             "enp0s20f0u2": "󰀂",
             "disconnected": "󰤭"
         },
-
         "tooltip": true,
         "tooltip-format": " {ifname}\nIP: {ipaddr} ",
         "tooltip-format-wifi": "  {essid} ({signalStrength}%) ",
         "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr} ",
         "tooltip-format-disconnected": " No connection 󰤭  ",
-
         "on-click": "~/.config/fxp-hyprland/scripts/custom/waybar/nmtui-floating/nmtui_fxp-hyprland.sh",
         "on-click-right": "nm-connection-editor"
+    },
+
+    "battery": {
+        "format": "{icon}",
+        "format-full": "󱈏",
+        "format-charging": " \n{capacity}%",
+        "format-charging-full": " 󱈏\n{capacity}%",
+        "format-discharging": "{icon}",
+        "format-icons": ["", "", "", "", ""],
+        "states": {
+            "critical": 15,
+            "warning": 30
+        },
+        "tooltip-format": "   {capacity}% "
+    },
+
+    // VOLUME MODULES
+    "pulseaudio/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "vertical",
+        "width": 8,
+        "reverse": false
+    },
+
+    "group/volume": {
+        "orientation": "vertical",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
+        "modules": ["pulseaudio", "pulseaudio/slider"]
     },
 
     "pulseaudio": {
@@ -151,23 +140,38 @@
             "default": ["", "", ""]
         },
         "scroll-step": 5,
-        "on-click": "swayosd-client --output-volume mute-toggle",
+        "on-click": "swayosd-client --output-volume mute-toggle", 
         "on-click-right": "pavucontrol",
         "on-scroll-up": "swayosd-client --output-volume raise",
         "on-scroll-down": "swayosd-client --output-volume lower",
         "ignored-sinks": ["Easy Effects Sink"],
-        "tooltip-format": "  󰕾 {volume}% ",
+        "tooltip-format": " 󰕾 {volume}% ",
         "tooltip": true
     },
 
+    // MISC GROUP MODULES
+    "group/misc": {
+        "orientation": "vertical",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/separator",
+            "bluetooth"
+        ]
+    },
+
+    "custom/separator": {
+        "format": "━━━",
+        "tooltip": false
+    },
+
     "bluetooth": {
-        // Rose Pine color scheme - using Waybar's native format
-        "format": "<span foreground='#eb6f92'></span>",  // Red - disabled
-        "format-on": "<span foreground='#f6c177'></span>",  // Gold - enabled, no connection
-        "format-connected": "<span foreground='#9ccfd8'></span> <span foreground='#e0def4'>{device_alias}</span>",  // Foam - connected
-        "format-connected-battery": "<span foreground='#9ccfd8'></span> <span foreground='#e0def4'>{device_alias}</span> <span foreground='#c4a7e7'>{device_battery_percentage}%</span>",
-        
-        // Simplified tooltips without HTML
+        "format": "",
+        "format-on": "",
+        "format-connected": "",
+        "format-connected-battery": "",
         "tooltip": true,
         "tooltip-format": "  Bluetooth Disabled \n Click to enable ",
         "tooltip-format-on": "  Bluetooth Active \n No devices connected ",
@@ -175,31 +179,7 @@
         "tooltip-format-connected-battery": "  Connected to {device_alias} \n Battery: {device_battery_percentage}% ",
         "tooltip-format-enumerate-connected": " {device_alias} ({device_address}) ",
         "tooltip-format-enumerate-connected-battery": " {device_alias} - Battery: {device_battery_percentage}% ",
-       
-        // Multiple click actions
         "on-click": "blueman-manager",
         "interval": 5
-    },
-
-    "battery": {
-        "format": "{icon}",
-        "format-full": "",
-        "format-charging": " {capacity}",
-        "format-charging-full": "  {capacity}",
-        "format-discharging": "{icon} ",
-        "format-icons": ["", "", "", "", ""],
-        "states": {
-            "critical": 15,
-            "warning": 30,
-            "good": 50,
-            "full": 95
-        },
-        "colors": {
-            "good": "#A3BE8C",
-            "warning": "#EBCB8B",
-            "critical": "#BF616A"
-        },
-        "tooltip-format": "   {capacity}% "
     }
 }
-
