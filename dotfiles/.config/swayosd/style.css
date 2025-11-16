@@ -1,21 +1,21 @@
-/* Gruvbox Light */
+/* Gruvbox Dark */
 window#osd {
-  background: #fbf1c7;
-  border: 2px solid #3c3836;
+  background: #282828;
+  border: 2px solid #ebdbb2;
 }
 
 progressbar trough {
-    background: #d5c4a1;
+    background: #665c54;
     border-radius: 25px;
     min-height: 8px;
 }
 
 progressbar progress {
-    background: #cc241d;
+    background: #fb4934;
     border-radius: 25px;
     min-height: 8px;
 }
 
 image {
-    color: #d79921;
+    color: #fabd2f;
 }

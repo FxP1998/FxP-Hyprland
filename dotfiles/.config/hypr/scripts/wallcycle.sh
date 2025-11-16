@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# 󰉋 SWWW Wallpaper Setter - Everforest Dark Edition 🌲
 
 # CONFIGURATION
-WALL_DIR="$HOME/.config/fxp-hyprland/themes/useable/Gruvbox-light/wallpapers"
+WALL_DIR="$HOME/.config/fxp-hyprland/themes/useable/Gruvbox-dark/wallpapers"
 TMP_DIR="$HOME/.config/hypr/hyprlock-bg"
 DURATION=3
 SWWW_LOG="/tmp/swww-daemon.log"
